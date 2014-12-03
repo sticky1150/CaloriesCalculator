@@ -2,11 +2,15 @@
 import tkFont
 
 def ok():
-    
+    k = {"kaw-pud-moo":350}
     print "value is", text1.get()
-    print "value is", variable.get()
+    print "value is", variable.get()#get value from food
+    print "ข้าวผัดหมู", k[joop]#show values of dic
+    rooto = Tk()
+    Label(rooto, text= k[joop] ).grid(row=0, sticky=W)#show label in callories
+    rooto.mainloop()
 
-def weight():
+def weight():#put weight and hight page
     root.destroy()
     rootw = Tk()
     rootw.geometry("400x350+200+200")
@@ -20,8 +24,8 @@ def weight():
     e2.grid(row=1, column=1)
     button1.grid(row=2, column=2)
     rootw.mainloop()
-def food():
-    global text1, variable
+def food():#select food page
+    global text1, variable, joop
     root.destroy()
     rootf = Tk()
     rootf.geometry("400x350+200+200")
@@ -32,11 +36,12 @@ def food():
     Label(rootf, text="อาหารคาว",font=("Britannic Bold", 20)).grid(row=2, sticky=W)
     Label(rootf, text="ของหวาน",font=("Britannic Bold", 20)).grid(row=3, sticky=W)
     Label(rootf, text="เครื่องดื่ม",font=("Britannic Bold", 20)).grid(row=4, sticky=W)
-    food1 = ['ข้าวผัดหมู','แกงเขียวหวาน','กบทอด','ข้าวไข่ดาว','ข้าวขาหมู','ข้าวไกย่าง','แกงเขียวหวาน']
+    food1 = ['kaw-pud-moo','แกงเขียวหวาน','กบทอด','ข้าวไข่ดาว','ข้าวขาหมู','ข้าวไกย่าง','แกงเขียวหวาน']
     variable = StringVar(rootf)
     variable.set(food1[0])
     w = apply(OptionMenu, (rootf, variable) + tuple(food1))
     w.grid(row=2, column=1)
+    joop = variable.get()
     text1 = StringVar(rootf)
     entry = Entry(rootf, textvariable=text1)
     text1.set(0)
