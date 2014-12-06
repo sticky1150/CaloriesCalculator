@@ -1,31 +1,23 @@
-﻿from Tkinter import *
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from Tkinter import *
 import tkFont
 
+
 def ok():
-    k = {"kaw-pud-moo":350}
-    print "value is", text1.get()
-    print "value is", variable.get()#get value from food
-    print "ข้าวผัดหมู", k[joop]#show values of dic
+    food_dic = {"ข้าวผัดหมู":350, "แกงเขียวหวาน":400}
+    dessert_dic = {}
+    bevarage_dic = {}
+    food_name = food_var.get()
+    dessert_name = dessert_var.get()
+    beverage_name = beverage_var.get()
+    print food_name , food_dic[food_name.encode('utf8')]#show values of dic by thai language
     rooto = Tk()
-    Label(rooto, text= k[joop] ).grid(row=0, sticky=W)#show label in callories
+    Label(rooto, text= food_dic[food_name.encode('utf8')] ).grid(row=0, sticky=W)#show label in callories
     rooto.mainloop()
 
-def weight():#put weight and hight page
-    root.destroy()
-    rootw = Tk()
-    rootw.geometry("400x350+200+200")
-    rootw.title("Calories Calculator")
-    Label(rootw, text="First").grid(row=0, sticky=W)
-    Label(rootw, text="Second").grid(row=1, sticky=W)
-    e1 = Entry(rootw)
-    e2 = Entry(rootw)
-    button1 = Button(rootw, text="คำนวณ", fg="black")
-    e1.grid(row=0, column=1)
-    e2.grid(row=1, column=1)
-    button1.grid(row=2, column=2)
-    rootw.mainloop()
 def food():#select food page
-    global text1, variable, joop
+    global food_var, dessert_var, beverage_var
     root.destroy()
     rootf = Tk()
     rootf.geometry("400x350+200+200")
@@ -36,16 +28,31 @@ def food():#select food page
     Label(rootf, text="อาหารคาว",font=("Britannic Bold", 20)).grid(row=2, sticky=W)
     Label(rootf, text="ของหวาน",font=("Britannic Bold", 20)).grid(row=3, sticky=W)
     Label(rootf, text="เครื่องดื่ม",font=("Britannic Bold", 20)).grid(row=4, sticky=W)
-    food1 = ['kaw-pud-moo','แกงเขียวหวาน','กบทอด','ข้าวไข่ดาว','ข้าวขาหมู','ข้าวไกย่าง','แกงเขียวหวาน']
-    variable = StringVar(rootf)
-    variable.set(food1[0])
-    w = apply(OptionMenu, (rootf, variable) + tuple(food1))
-    w.grid(row=2, column=1)
-    joop = variable.get()
-    text1 = StringVar(rootf)
-    entry = Entry(rootf, textvariable=text1)
-    text1.set(0)
-    entry.grid(row=4, column=1)
+    #------------Food Section------------------#
+    food = ('ข้าวผัดหมู','แกงเขียวหวาน','กบทอด','ข้าวไข่ดาว','ข้าวขาหมู','ข้าวไกย่าง')
+    food_var = StringVar(rootf)
+    food_var.set(food[0])
+    food_lis = OptionMenu(rootf, food_var, *food)
+    food_lis.configure(font=("Britannic Bold", 20))
+    food_lis.grid(row=2, column=1)
+    food_var.get()
+    
+    #----------Dessert Section---------------#
+    dessert = ('บัวลอย','ขนมโก๋','อิอิ','ครุคริ')
+    dessert_var = StringVar(rootf)
+    dessert_var.set(dessert[0])
+    dessert_lis = OptionMenu(rootf, dessert_var, *dessert)
+    dessert_lis.grid(row=3, column=1)
+    dessert_var.get()
+
+    #------Beverage Section---------#
+    beverage = ('เป็บซี่','โคล่า','ชา','ครุคริ')
+    beverage_var = StringVar(rootf)
+    beverage_var.set(beverage[0])
+    beverage_lis = OptionMenu(rootf, beverage_var, *beverage)
+    beverage_lis.grid(row=4, column=1)
+    beverage_var.get()
+    
     button = Button(rootf, text="OK", command=ok)
     button.grid(row=5, column=1)
     rootf.mainloop()
@@ -58,15 +65,10 @@ font = tkFont.Font(size="25")
 root.title("Calories Calculator")
 label = Label(root, text="Calories Calculator",font=("Britannic Bold", 30),bg="white",fg="black")
 label.pack(fill=X)
-
 frame1 = Frame(root).pack(side = "top")
-button1 = Button(frame1, padx=15, pady=35, bd=15,
-                     text="คำนวณพร้อมน้ำหนัก,เพศและส่วนสูง",font=("AngsanaNew", 20), fg="white", bg="red", command=weight)
-button1.pack()
 button2 = Button(frame1, padx=30, pady=35, bd=15, 
                      text="คำนวณเฉพาะพลังงานของอาหาร",font=("AngsanaNew", 20), fg="black", bg="yellow", command=food)
 button2.pack()
-
 root.mainloop()
 
  
