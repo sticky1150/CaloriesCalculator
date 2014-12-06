@@ -7,6 +7,7 @@ import tkFont
 #-------calculate calories page------#
 def calculate():
     rooto = Tk()
+    rooto.geometry("450x400+200+200")
     rooto.title("Calculator")
     food_dic = {'ไม่เลือก':0, 'ข้าวผัดหมู':350, 'แกงเขียวหวาน':400}
     dessert_dic = {'ไม่เลือก':0, 'กล้วยบวชชี':230, 'ขนมปลากริมไข่เต่า':250,
@@ -36,10 +37,16 @@ def calculate():
     beverage_name = beverage_var.get()
     #find sum calories
     calories = food_dic[food_name.encode('utf8')]+dessert_dic[dessert_name.encode('utf8')]+beverage_dic[beverage_name.encode('utf8')]
-    print "Calories" , calories
     Label(rooto, text="จำนวนแคลอรี่ทั้งหมด", font=("Britannic Bold", 25)).grid(row=0, column=3)
     Label(rooto, text=calories, font=("Britannic Bold", 25)).grid(row=1, column=3)#show callories in label
     Label(rooto, text="การออกกำลังกายที่แนะนำ", font=("Britannic Bold", 18)).grid(row=3, column=3)
+    Label(rooto, text="วิ่งเร็ว", font=("Britannic Bold", 15)).grid(row=4, column=2)
+    Label(rooto, text=str((calories/15)/60)+" ชั่วโมง "+str((calories/15)%60)+" นาที").grid(row=4, column=3)
+    Label(rooto, text="ว่ายน้ำ", font=("Britannic Bold", 15)).grid(row=5, column=2)
+    Label(rooto, text=str((calories/8)/60)+" ชั่วโมง "+str((calories/8)%60)+" นาที").grid(row=5, column=3)
+    Label(rooto, text="ปั่นจักรยาน", font=("Britannic Bold", 15)).grid(row=6, column=2)
+    Label(rooto, text=str((calories/7)/60)+" ชั่วโมง "+str((calories/7)%60)+" นาที").grid(row=6, column=3)
+    Label(rooto, text="กรุณาปิดหน้านี้เพื่อคำนวณอีกใหม่").grid(row=7, column=3)
     rooto.mainloop()
 
 #------choose food page---------#
