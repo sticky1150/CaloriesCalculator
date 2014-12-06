@@ -32,9 +32,9 @@ def calculate():
                 'เกี๊ยวน้ำกุ้ง':275, 'เกี๊ยวปลาน้ำ':165, 'เฝอ':240, 'เย็นตาโฟน้ำ':290, 'เส้นจันท์ผัดปู':575, 'เส้นหมี่ลูกชิ้นน้ำใส':225,
                 'เส้นหมี่ลูกชิ้นหมูแห้ง':430, 'เส้นใหญ่ผัดขี้เมา':550, 'โกยซีหมี่':550, 'โจ๊กหมู':160, 'โจ๊กหมู ตับ ไข่ลวก':230}
     dessert_dic = {'ไม่เลือก':0, 'กล้วยบวชชี':230, 'ขนมปลากริมไข่เต่า':250,
-                   'ข้าวเหนียวกะทิทุเรียน':225, 'ข้าวเหนียวดำเปียก 1 ถ้วย':205, 'ข้าวโพดคั่ว (เคลือบน้ำตาล)':60,
-                   'ครองแครงกะทิ':250, 'ครีมโรล 1 ชิ้น':360, 'ชิฟฟอนกาแฟ':275, 'ชิฟฟอนคัสตาร์ดเค้ก':340,
-                   'ช็อคโกแลตำ':170, 'ซ่าหริ่ม 1 ถ้วย':275,'ถั่วเขียวต้มน้ำตาล':160, 'ทับทิมกรอบ':250,
+                   'ข้าวเหนียวกะทิทุเรียน':225, 'ข้าวเหนียวดำเปียก':205, 'ข้าวโพดคั่ว (เคลือบน้ำตาล)':60,
+                   'ครองแครงกะทิ':250, 'ครีมโรล':360, 'ชิฟฟอนกาแฟ':275, 'ชิฟฟอนคัสตาร์ดเค้ก':340,
+                   'ช็อคโกแลตำ':170, 'ซ่าหริ่ม':275,'ถั่วเขียวต้มน้ำตาล':160, 'ทับทิมกรอบ':250,
                    'บราวนี่':340, 'บะจ่าง':300, 'บัวลอย':223, 'บัวลอยน้ำขิง':160, 'บัวลอยเผือก':300,
                    'บูลเบอร์รี่ชีสเค้ก':285, 'พายกรอบ (โรยน้ำตาล)':235, 'พายชีสบูลเบอร์รี่':350, 'ฟรุตสลัด':180,
                    'ฟรุตเค้ก':400, 'ฟรุ้ตบาร์':305, 'มันเทศเชื่อม':230, 'มันแกงบวด':184,'รวมมิตร':230,
@@ -106,10 +106,13 @@ def food():#select food page
     food_var = StringVar(rootf)
     food_var.set(food[0])
     food_lis = OptionMenu(rootf, food_var, *food)
+    food_lis.config(width = 13)
     food_lis.configure(font=("Britannic Bold", 20))
     food_lis.grid(row=2, column=1)
+    food_lis = food_lis.nametowidget(food_lis.menuname)
+    food_lis.configure(font=("Britannic Bold", 20))
     food_var.get()
-    
+
     #----------Dessert Section---------------#
     dessert = ('ไม่เลือก', 'กล้วยบวชชี', 'ขนมปลากริมไข่เต่า', 'ข้าวเหนียวกะทิทุเรียน', 'ข้าวเหนียวดำเปียก', 'ข้าวโพดคั่ว (เคลือบน้ำตาล)',
                'ครองแครงกะทิ', 'ครีมโรล', 'ชิฟฟอนกาแฟ', 'ชิฟฟอนคัสตาร์ดเค้ก'
@@ -126,8 +129,11 @@ def food():#select food page
     dessert_var = StringVar(rootf)
     dessert_var.set(dessert[0])
     dessert_lis = OptionMenu(rootf, dessert_var, *dessert)
+    dessert_lis.config(width = 13)
     dessert_lis.configure(font=("Britannic Bold", 20))
     dessert_lis.grid(row=3, column=1)
+    dessert_lis = dessert_lis.nametowidget(dessert_lis.menuname)
+    dessert_lis.configure(font=("Britannic Bold", 20))
     dessert_var.get()
 
     #------Beverage Section---------#
@@ -142,10 +148,13 @@ def food():#select food page
     beverage_var.set(beverage[0])
     beverage_lis = OptionMenu(rootf, beverage_var, *beverage)
     beverage_lis.grid(row=4, column=1)
+    beverage_lis.config(width = 13)
+    beverage_lis.configure(font=("Britannic Bold", 20))
+    beverage_lis = beverage_lis.nametowidget(beverage_lis.menuname)
     beverage_lis.configure(font=("Britannic Bold", 20))
     beverage_var.get()
     
-    button = Button(rootf, text="OK", command=calculate)
+    button = Button(rootf, text="OK", command=calculate, padx=30, pady=35,)
     button.grid(row=5, column=1)
     rootf.mainloop()
 
