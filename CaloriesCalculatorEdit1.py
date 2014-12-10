@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 from Tkinter import *
 import tkFont
-
+import Tkinter as tk
 
 #-------calculate calories page------#
 def calculate():
     rooto = Tk()
-    rooto.geometry("450x400+200+200")
+    rooto.geometry("480x480+350+100")
     rooto.title("Calculator")
     food_dic = {'ไม่เลือก':0, 'กระเพาะปลา':150, 'กระเพาะปลาตุ๋นน้ำแดง':225, 'กุ้งผัดพริกอ่อน':235, 'ก๋วยจั๊บ':240, 'ก๋วยจั๊บญวณ':235,
                 'ก๋วยเตี๋ยวคั่วไก่':435, 'ก๋วยเตี๋ยวต้มยำกุ้ง':320, 'ก๋วยเตี๋ยวผัดกระเพราไก่':440, 'ก๋วยเตี๋ยวผัดไทยกุ้งสดใส่ไข่':545, 'ก๋วยเตี๋ยวราดหน้าปลากระพง':435,
@@ -75,14 +75,19 @@ def food():#select food page
     global food_var, dessert_var, beverage_var
     root.destroy()
     rootf = Tk()
-    rootf.geometry("400x350+200+200")
+    rootf.geometry("480x480+350+100")
+
+    
     rootf.title("Food Selecter")
-    label = Label(rootf, text="Food Selecter",font=("Britannic Bold", 30),bg="white",fg="black")
+ 
+    label = Label(rootf, text="Food Selecter",font=("Chelsea", 30),bg="white",fg="black")
     label.grid(row=0,column=1)
-    Label(rootf, text=" ",font=("Britannic Bold", 20)).grid(row=1, sticky=W)
-    Label(rootf, text="อาหารคาว",font=("Britannic Bold", 20)).grid(row=2, sticky=W)
-    Label(rootf, text="ของหวาน",font=("Britannic Bold", 20)).grid(row=3, sticky=W)
-    Label(rootf, text="เครื่องดื่ม",font=("Britannic Bold", 20)).grid(row=4, sticky=W)
+    Label(rootf, text="",font=("Britannic Bold", 20)).grid(row=1)
+    Label(rootf, text="",font=("Britannic Bold", 20)).grid(row=2)
+    Label(rootf, text="อาหารคาว",font=("Britannic Bold", 20)).grid(row=3,columnspan=1, rowspan=1)
+    Label(rootf, text="ของหวาน",font=("Britannic Bold", 20)).grid(row=4)
+    Label(rootf, text="เครื่องดื่ม",font=("Britannic Bold", 20)).grid(row=5)
+    
     #------------Food Section------------------#
     food = ('ไม่เลือก', 'กระเพาะปลา', 'กระเพาะปลาตุ๋นน้ำแดง', 'กุ้งผัดพริกอ่อน', 'ก๋วยจั๊บ', 'ก๋วยจั๊บญวณ', 'ก๋วยเตี๋ยวคั่วไก่',
             'ก๋วยเตี๋ยวต้มยำกุ้ง', 'ก๋วยเตี๋ยวผัดกระเพราไก่', 'ก๋วยเตี๋ยวผัดไทยกุ้งสดใส่ไข่', 'ก๋วยเตี๋ยวราดหน้าปลากระพง', 'ก๋วยเตี๋ยวหลอด',
@@ -108,7 +113,7 @@ def food():#select food page
     food_lis = OptionMenu(rootf, food_var, *food)
     food_lis.config(width = 13)
     food_lis.configure(font=("Britannic Bold", 20))
-    food_lis.grid(row=2, column=1)
+    food_lis.grid(row=3, column=1)
     food_lis = food_lis.nametowidget(food_lis.menuname)
     food_lis.configure(font=("Britannic Bold", 20))
     food_var.get()
@@ -131,7 +136,7 @@ def food():#select food page
     dessert_lis = OptionMenu(rootf, dessert_var, *dessert)
     dessert_lis.config(width = 13)
     dessert_lis.configure(font=("Britannic Bold", 20))
-    dessert_lis.grid(row=3, column=1)
+    dessert_lis.grid(row=4, column=1)
     dessert_lis = dessert_lis.nametowidget(dessert_lis.menuname)
     dessert_lis.configure(font=("Britannic Bold", 20))
     dessert_var.get()
@@ -147,31 +152,46 @@ def food():#select food page
     beverage_var = StringVar(rootf)
     beverage_var.set(beverage[0])
     beverage_lis = OptionMenu(rootf, beverage_var, *beverage)
-    beverage_lis.grid(row=4, column=1)
+    beverage_lis.grid(row=5, column=1)
     beverage_lis.config(width = 13)
     beverage_lis.configure(font=("Britannic Bold", 20))
     beverage_lis = beverage_lis.nametowidget(beverage_lis.menuname)
     beverage_lis.configure(font=("Britannic Bold", 20))
     beverage_var.get()
-    
-    button = Button(rootf, text="OK", command=calculate, padx=30, pady=35,)
-    button.grid(row=5, column=1)
+    button = Button(rootf, text="OK", command=calculate, padx=20, pady=13,)
+    button.grid(row=8,column = 1)
     rootf.mainloop()
 
 
 #-------First Page------#
-root = Tk()
-root.geometry("400x350+200+200")
+root = tk.Tk()
+image1 = tk.PhotoImage(file="Green_Lime_Blur.gif")
+w = image1.width()
+h = image1.height()
+
+
+root.geometry("480x480+350+100")
+
+panel1 = tk.Label(root, image=image1)
+panel1.pack(side='top', fill='both', expand='yes')
+
+
 font = tkFont.Font(size="25")
 root.title("Calories Calculator")
-label = Label(root, text="Calories Calculator",font=("Britannic Bold", 30),bg="white",fg="black")
-label.pack(fill=X)
-label1 = Label(root, text="",font=("Britannic Bold", 30))
-label1.pack(fill=X)
-frame1 = Frame(root).pack(side = "top")
-button2 = Button(frame1, padx=30, pady=35, bd=15, 
-                     text="คำนวณเฉพาะพลังงานของอาหาร",font=("AngsanaNew", 20), fg="black", bg="yellow", command=food)
-button2.pack()
+
+
+
+label = tk.Label(panel1, text=" Calories Calculator ",font=("Chelsea", 40),fg='snow',bg='chartreuse4',compound='center')
+label.pack(side='top', fill='both')
+
+
+
+
+
+frame1 = Frame(root).pack(side = "left")
+button2 = tk.Button(panel1, padx=30, pady=35, bd=5, 
+                     text="คำนวณพลังงานของอาหาร",font=("CSPraJad", 20), fg="black", bg="snow", command=food)
+button2.pack(expand=YES)
 root.mainloop()
 
  
