@@ -74,19 +74,30 @@ def calculate():
 def food():#select food page
     global food_var, dessert_var, beverage_var
     root.destroy()
-    rootf = Tk()
+    rootf = tk.Tk()
     rootf.geometry("480x480+350+100")
 
     
     rootf.title("Food Selecter")
- 
-    label = Label(rootf, text="Food Selecter",font=("Chelsea", 30),bg="white",fg="black")
-    label.grid(row=0,column=1)
-    Label(rootf, text="",font=("Britannic Bold", 20)).grid(row=1)
-    Label(rootf, text="",font=("Britannic Bold", 20)).grid(row=2)
-    Label(rootf, text="อาหารคาว",font=("Britannic Bold", 20)).grid(row=3,columnspan=1, rowspan=1)
-    Label(rootf, text="ของหวาน",font=("Britannic Bold", 20)).grid(row=4)
-    Label(rootf, text="เครื่องดื่ม",font=("Britannic Bold", 20)).grid(row=5)
+    image2 = tk.PhotoImage(file="Green_Lime_Blur.gif")
+    w = image2.width()
+    h = image2.height()
+
+    panel1 = tk.Label(rootf, image=image2)
+    panel1.pack(side='top', fill='both', expand='yes')
+
+    
+    
+
+    
+    label = tk.Label(panel1, text="Food Selecter",font=("Chelsea", 30),bg="chartreuse4",fg="snow")
+    label.pack(fill=X)
+    label2 = Frame(panel1, bg="chartreuse4")
+    Label(label2, text="อาหารคาว",font=("Chelsea", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="ของหวาน",font=("Chelsea", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="เครื่องดื่ม",font=("Chelsea", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    label2.pack(side=LEFT, fill=BOTH, pady=145)
+    label3 = Frame(panel1, bg="chartreuse4")
     
     #------------Food Section------------------#
     food = ('ไม่เลือก', 'กระเพาะปลา', 'กระเพาะปลาตุ๋นน้ำแดง', 'กุ้งผัดพริกอ่อน', 'ก๋วยจั๊บ', 'ก๋วยจั๊บญวณ', 'ก๋วยเตี๋ยวคั่วไก่',
@@ -110,12 +121,12 @@ def food():#select food page
             'โกยซีหมี่', 'โจ๊กหมู', 'โจ๊กหมู ตับ ไข่ลวก')
     food_var = StringVar(rootf)
     food_var.set(food[0])
-    food_lis = OptionMenu(rootf, food_var, *food)
+    food_lis = tk.OptionMenu(label3, food_var, *food)
     food_lis.config(width = 13)
-    food_lis.configure(font=("Britannic Bold", 20))
-    food_lis.grid(row=3, column=1)
+    food_lis.configure(font=("Chelsea", 20))
+    food_lis.pack(side="top", anchor=N, fill=X, expand=YES)
     food_lis = food_lis.nametowidget(food_lis.menuname)
-    food_lis.configure(font=("Britannic Bold", 20))
+    food_lis.configure(font=("Chelsea", 16))
     food_var.get()
 
     #----------Dessert Section---------------#
@@ -133,12 +144,12 @@ def food():#select food page
                'ไอศกรีมวนิลลา', 'ไอศกรีมสตรอเบอรี่', 'ไอศกรีมเรซิน')
     dessert_var = StringVar(rootf)
     dessert_var.set(dessert[0])
-    dessert_lis = OptionMenu(rootf, dessert_var, *dessert)
+    dessert_lis = OptionMenu(label3, dessert_var, *dessert)
     dessert_lis.config(width = 13)
-    dessert_lis.configure(font=("Britannic Bold", 20))
-    dessert_lis.grid(row=4, column=1)
+    dessert_lis.configure(font=("Chelsea", 20))
+    dessert_lis.pack(side=TOP, anchor=W, fill=X, expand=YES)
     dessert_lis = dessert_lis.nametowidget(dessert_lis.menuname)
-    dessert_lis.configure(font=("Britannic Bold", 20))
+    dessert_lis.configure(font=("Chelsea", 16))
     dessert_var.get()
 
     #------Beverage Section---------#
@@ -151,15 +162,16 @@ def food():#select food page
                 'โยเกิร์ต (รสธรรมชาติ)', 'โยเกิร์ต (รสผลไม้)', 'โยเกิร์ต (ไขมันต่ำรสผลไม้)', 'โอวัลติน', 'โอเลี้ยง')
     beverage_var = StringVar(rootf)
     beverage_var.set(beverage[0])
-    beverage_lis = OptionMenu(rootf, beverage_var, *beverage)
-    beverage_lis.grid(row=5, column=1)
+    beverage_lis = OptionMenu(label3, beverage_var, *beverage)
     beverage_lis.config(width = 13)
-    beverage_lis.configure(font=("Britannic Bold", 20))
+    beverage_lis.pack(side=TOP, anchor=W, fill=X, expand=YES)
+    beverage_lis.configure(font=("Chelsea", 20), bg="snow")
     beverage_lis = beverage_lis.nametowidget(beverage_lis.menuname)
-    beverage_lis.configure(font=("Britannic Bold", 20))
+    beverage_lis.configure(font=("Chelsea", 16))
     beverage_var.get()
-    button = Button(rootf, text="OK", command=calculate, padx=20, pady=13,)
-    button.grid(row=8,column = 1)
+    label3.pack(side=LEFT, padx=10, pady=10)
+    button = Button(panel1, text="OK", command=calculate, padx=40, pady=15, bd=5, fg="black", bg="snow")
+    button.pack(side='right')
     rootf.mainloop()
 
 
