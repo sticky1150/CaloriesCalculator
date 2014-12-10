@@ -3,12 +3,22 @@
 from Tkinter import *
 import tkFont
 import Tkinter as tk
+from PIL import Image, ImageTk
 
 #-------calculate calories page------#
 def calculate():
-    rooto = Tk()
-    rooto.geometry("480x480+350+100")
+    rooto = tk.Toplevel()
+    
     rooto.title("Calculator")
+    imageFile = "Green_Lime_Blur.gif"
+    imagecal = ImageTk.PhotoImage(Image.open(imageFile))
+    w = imagecal.width()
+    h = imagecal.height()
+    x = 0
+    y = 0
+    rooto.geometry("480x640+350+100")
+
+    
     food_dic = {'ไม่เลือก':0, 'กระเพาะปลา':150, 'กระเพาะปลาตุ๋นน้ำแดง':225, 'กุ้งผัดพริกอ่อน':235, 'ก๋วยจั๊บ':240, 'ก๋วยจั๊บญวณ':235,
                 'ก๋วยเตี๋ยวคั่วไก่':435, 'ก๋วยเตี๋ยวต้มยำกุ้ง':320, 'ก๋วยเตี๋ยวผัดกระเพราไก่':440, 'ก๋วยเตี๋ยวผัดไทยกุ้งสดใส่ไข่':545, 'ก๋วยเตี๋ยวราดหน้าปลากระพง':435,
                 'ก๋วยเตี๋ยวหลอด':225, 'ก๋วยเตี๋ยวเนื้อเรียง':370, 'ก๋วยเตี๋ยวเรือน้ำตกน้ำ':180, 'ก๋วยเตี๋ยวเรือน้ำตกแห้ง':225, 'ก๋วยเตี๋ยวเส้นปลา น้ำ':375,
@@ -58,16 +68,31 @@ def calculate():
     beverage_name = beverage_var.get()
     #find sum calories
     calories = food_dic[food_name.encode('utf8')]+dessert_dic[dessert_name.encode('utf8')]+beverage_dic[beverage_name.encode('utf8')]
-    Label(rooto, text="จำนวนแคลอรี่ทั้งหมด", font=("Britannic Bold", 25)).grid(row=0, column=3)
-    Label(rooto, text=calories, font=("Britannic Bold", 25)).grid(row=1, column=3)#show callories in label
-    Label(rooto, text="การออกกำลังกายที่แนะนำ", font=("Britannic Bold", 18)).grid(row=3, column=3)
-    Label(rooto, text="วิ่งเร็ว", font=("Britannic Bold", 15)).grid(row=4, column=2)
-    Label(rooto, text=str((calories/15)/60)+" ชั่วโมง "+str((calories/15)%60)+" นาที").grid(row=4, column=3)
-    Label(rooto, text="ว่ายน้ำ", font=("Britannic Bold", 15)).grid(row=5, column=2)
-    Label(rooto, text=str((calories/8)/60)+" ชั่วโมง "+str((calories/8)%60)+" นาที").grid(row=5, column=3)
-    Label(rooto, text="ปั่นจักรยาน", font=("Britannic Bold", 15)).grid(row=6, column=2)
-    Label(rooto, text=str((calories/7)/60)+" ชั่วโมง "+str((calories/7)%60)+" นาที").grid(row=6, column=3)
-    Label(rooto, text="กรุณาปิดหน้านี้เพื่อคำนวณอีกใหม่").grid(row=7, column=3)
+
+
+    
+    panel3 = tk.Label(rooto, image=imagecal)
+    panel3.pack(side='top', fill='both', expand='yes')
+    
+    labelo = tk.Label(panel3, text="Calculator Result",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
+    labelo.pack(fill=X)
+    labelo2 = Frame(panel3, bg="OliveDrab3", pady="50")
+
+    Label(labelo2, text="จำนวนแคลอรี่ทั้งหมด", font=("CSPraJad-bold", 23),bg='chartreuse3', fg="snow").pack(side="top", anchor=W, fill=X, expand=YES, pady="10")
+    Label(labelo2, text=calories, font=("Britannic Bold", 25),bg='OliveDrab3').pack(side="top", pady="20")#show callories in label
+    Label(labelo2, text="การออกกำลังกายที่แนะนำ", font=("CSPraJad-bold", 23),bg='chartreuse3', fg="snow").pack(side="top", fill=X)
+    Label(labelo2, text="วิ่งเร็ว", font=("CSPraJad-bold", 20),bg='OliveDrab3').pack(side="top")
+    Label(labelo2, text=str((calories/15)/60)+" ชั่วโมง "+str((calories/15)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
+    Label(labelo2, text="ว่ายน้ำ", font=("CSPraJad-bold", 20),bg='OliveDrab3').pack(side="top")
+    Label(labelo2, text=str((calories/8)/60)+" ชั่วโมง "+str((calories/8)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
+    Label(labelo2, text="ปั่นจักรยาน", font=("CSPraJad-bold", 20),bg='OliveDrab3').pack(side="top")
+    Label(labelo2, text=str((calories/7)/60)+" ชั่วโมง "+str((calories/7)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
+    Label(labelo2, text="กรุณาปิดหน้านี้เพื่อคำนวณอีกครั้้ง",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
+    
+
+    
+    labelo2.pack(side=TOP, fill=X)
+    panel3.image = imagecal
     rooto.mainloop()
 
 #------choose food page---------#
@@ -90,12 +115,12 @@ def food():#select food page
     
 
     
-    label = tk.Label(panel1, text="Food Selecter",font=("Chelsea", 30),bg="chartreuse4",fg="snow")
+    label = tk.Label(panel1, text="Food Selecter",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
     label.pack(fill=X)
     label2 = Frame(panel1, bg="chartreuse4")
-    Label(label2, text="อาหารคาว",font=("Chelsea", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
-    Label(label2, text="ของหวาน",font=("Chelsea", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
-    Label(label2, text="เครื่องดื่ม",font=("Chelsea", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="อาหารคาว",font=("CSPraJad", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="ของหวาน",font=("CSPraJad", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="เครื่องดื่ม",font=("CSPraJad", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
     label2.pack(side=LEFT, fill=BOTH, pady=145)
     label3 = Frame(panel1, bg="chartreuse4")
     
@@ -122,11 +147,11 @@ def food():#select food page
     food_var = StringVar(rootf)
     food_var.set(food[0])
     food_lis = tk.OptionMenu(label3, food_var, *food)
-    food_lis.config(width = 13)
-    food_lis.configure(font=("Chelsea", 20))
+    food_lis.config(width = 17)
+    food_lis.configure(font=("CSPraJad", 16))
     food_lis.pack(side="top", anchor=N, fill=X, expand=YES)
     food_lis = food_lis.nametowidget(food_lis.menuname)
-    food_lis.configure(font=("Chelsea", 16))
+    food_lis.configure(font=("CSPraJad", 16))
     food_var.get()
 
     #----------Dessert Section---------------#
@@ -145,11 +170,11 @@ def food():#select food page
     dessert_var = StringVar(rootf)
     dessert_var.set(dessert[0])
     dessert_lis = OptionMenu(label3, dessert_var, *dessert)
-    dessert_lis.config(width = 13)
-    dessert_lis.configure(font=("Chelsea", 20))
+    dessert_lis.config(width = 17)
+    dessert_lis.configure(font=("CSPraJad", 16))
     dessert_lis.pack(side=TOP, anchor=W, fill=X, expand=YES)
     dessert_lis = dessert_lis.nametowidget(dessert_lis.menuname)
-    dessert_lis.configure(font=("Chelsea", 16))
+    dessert_lis.configure(font=("CSPraJad", 16))
     dessert_var.get()
 
     #------Beverage Section---------#
@@ -163,11 +188,11 @@ def food():#select food page
     beverage_var = StringVar(rootf)
     beverage_var.set(beverage[0])
     beverage_lis = OptionMenu(label3, beverage_var, *beverage)
-    beverage_lis.config(width = 13)
+    beverage_lis.config(width = 17)
     beverage_lis.pack(side=TOP, anchor=W, fill=X, expand=YES)
-    beverage_lis.configure(font=("Chelsea", 20), bg="snow")
+    beverage_lis.configure(font=("CSPraJad", 16), bg="snow")
     beverage_lis = beverage_lis.nametowidget(beverage_lis.menuname)
-    beverage_lis.configure(font=("Chelsea", 16))
+    beverage_lis.configure(font=("CSPraJad", 16))
     beverage_var.get()
     label3.pack(side=LEFT, padx=10, pady=10)
     button = Button(panel1, text="OK", command=calculate, padx=40, pady=15, bd=5, fg="black", bg="snow")
@@ -193,7 +218,7 @@ root.title("Calories Calculator")
 
 
 
-label = tk.Label(panel1, text=" Calories Calculator ",font=("Chelsea", 40),fg='snow',bg='chartreuse4',compound='center')
+label = tk.Label(panel1, text=" Calories Calculator ",font=("Chelsea ", 35),fg='snow',bg='chartreuse4',compound='center')
 label.pack(side='top', fill='both')
 
 
