@@ -2,21 +2,16 @@
 # -*- coding: utf-8 -*-
 from Tkinter import *
 import tkFont
-import Tkinter as tk
-from PIL import Image, ImageTk
+
+
 
 #-------calculate calories page------#
 def calculate():
-    rooto = tk.Toplevel()
+    rooto = Tk()
     
     rooto.title("Calculator")
-    imageFile = "Green_Lime_Blur.gif"
-    imagecal = ImageTk.PhotoImage(Image.open(imageFile))
-    w = imagecal.width()
-    h = imagecal.height()
-    x = 0
-    y = 0
-    rooto.geometry("480x640+350+100")
+
+    rooto.geometry("480x640+350+50")
 
     
     food_dic = {'ไม่เลือก':0, 'กระเพาะปลา':150, 'กระเพาะปลาตุ๋นน้ำแดง':225, 'กุ้งผัดพริกอ่อน':235, 'ก๋วยจั๊บ':240, 'ก๋วยจั๊บญวณ':235,
@@ -71,10 +66,10 @@ def calculate():
 
 
     
-    panel3 = tk.Label(rooto, image=imagecal)
+    panel3 = Label(rooto, bg="OliveDrab3")
     panel3.pack(side='top', fill='both', expand='yes')
     
-    labelo = tk.Label(panel3, text="Calculator Result",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
+    labelo = Label(panel3, text="How to Burn ?",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
     labelo.pack(fill=X)
     labelo2 = Frame(panel3, bg="OliveDrab3", pady="50")
 
@@ -87,40 +82,36 @@ def calculate():
     Label(labelo2, text=str((calories/8)/60)+" ชั่วโมง "+str((calories/8)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
     Label(labelo2, text="ปั่นจักรยาน", font=("CSPraJad-bold", 20),bg='OliveDrab3').pack(side="top")
     Label(labelo2, text=str((calories/7)/60)+" ชั่วโมง "+str((calories/7)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
-    Label(labelo2, text="กรุณาปิดหน้านี้เพื่อคำนวณอีกครั้้ง",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
-    
-
-    
+    Label(labelo2, text="กรุณาปิดหน้านี้เพื่อคำนวณอีกครั้้ง", bg='OliveDrab3', font=("CSPraJad-bold", 15), fg="snow").pack(side="top")
+        
     labelo2.pack(side=TOP, fill=X)
-    panel3.image = imagecal
+    
     rooto.mainloop()
 
 #------choose food page---------#
 def food():#select food page
     global food_var, dessert_var, beverage_var
     root.destroy()
-    rootf = tk.Tk()
+    rootf = Tk()
     rootf.geometry("480x480+350+100")
 
     
     rootf.title("Food Selecter")
-    image2 = tk.PhotoImage(file="Green_Lime_Blur.gif")
-    w = image2.width()
-    h = image2.height()
 
-    panel1 = tk.Label(rootf, image=image2)
+
+    panel1 = Label(rootf, bg="OliveDrab3")
     panel1.pack(side='top', fill='both', expand='yes')
 
     
     
 
     
-    label = tk.Label(panel1, text="Food Selecter",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
+    label = Label(panel1, text="Food Selecter",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
     label.pack(fill=X)
     label2 = Frame(panel1, bg="chartreuse4")
-    Label(label2, text="อาหารคาว",font=("CSPraJad", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
-    Label(label2, text="ของหวาน",font=("CSPraJad", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
-    Label(label2, text="เครื่องดื่ม",font=("CSPraJad", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="อาหารคาว",font=("CSPraJad-bold", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="ของหวาน",font=("CSPraJad-bold", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="เครื่องดื่ม",font=("CSPraJad-bold", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
     label2.pack(side=LEFT, fill=BOTH, pady=145)
     label3 = Frame(panel1, bg="chartreuse4")
     
@@ -146,7 +137,7 @@ def food():#select food page
             'โกยซีหมี่', 'โจ๊กหมู', 'โจ๊กหมู ตับ ไข่ลวก')
     food_var = StringVar(rootf)
     food_var.set(food[0])
-    food_lis = tk.OptionMenu(label3, food_var, *food)
+    food_lis = OptionMenu(label3, food_var, *food)
     food_lis.config(width = 17)
     food_lis.configure(font=("CSPraJad", 16))
     food_lis.pack(side="top", anchor=N, fill=X, expand=YES)
@@ -201,15 +192,12 @@ def food():#select food page
 
 
 #-------First Page------#
-root = tk.Tk()
-image1 = tk.PhotoImage(file="Green_Lime_Blur.gif")
-w = image1.width()
-h = image1.height()
+root = Tk()
 
 
 root.geometry("480x480+350+100")
 
-panel1 = tk.Label(root, image=image1)
+panel1 = Label(root,  bg="OliveDrab3")
 panel1.pack(side='top', fill='both', expand='yes')
 
 
@@ -218,7 +206,7 @@ root.title("Calories Calculator")
 
 
 
-label = tk.Label(panel1, text=" Calories Calculator ",font=("Chelsea ", 35),fg='snow',bg='chartreuse4',compound='center')
+label = Label(panel1, text=" Calories Calculator ",font=("Chelsea ", 35),fg='snow',bg='chartreuse4',compound='center')
 label.pack(side='top', fill='both')
 
 
@@ -226,7 +214,7 @@ label.pack(side='top', fill='both')
 
 
 frame1 = Frame(root).pack(side = "left")
-button2 = tk.Button(panel1, padx=30, pady=35, bd=5, 
+button2 = Button(panel1, padx=30, pady=35, bd=5, 
                      text="คำนวณพลังงานของอาหาร",font=("CSPraJad", 20), fg="black", bg="snow", command=food)
 button2.pack(expand=YES)
 root.mainloop()
