@@ -1,4 +1,4 @@
 CaloriesCalculator
 ==================
 
-App fo calculate calories in food and way to burn calories
+Calories Calculator เป็นapplicationสำหรับคำนวณcaloriesที่รับประทานไปในแต่ละมื้อ
