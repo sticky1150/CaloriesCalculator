@@ -7,13 +7,9 @@ import tkFont
 
 #-------calculate calories page------#
 def calculate():
-    rooto = Tk()
-    
+    rooto = Tk()    
     rooto.title("Calculator")
-
-    rooto.geometry("480x640+350+50")
-
-    
+    rooto.geometry("480x640+350+50")    
     food_dic = {'ไม่เลือก':0, 'กระเพาะปลา':150, 'กระเพาะปลาตุ๋นน้ำแดง':225, 'กุ้งผัดพริกอ่อน':235, 'ก๋วยจั๊บ':240, 'ก๋วยจั๊บญวณ':235,
                 'ก๋วยเตี๋ยวคั่วไก่':435, 'ก๋วยเตี๋ยวต้มยำกุ้ง':320, 'ก๋วยเตี๋ยวผัดกระเพราไก่':440, 'ก๋วยเตี๋ยวผัดไทยกุ้งสดใส่ไข่':545, 'ก๋วยเตี๋ยวราดหน้าปลากระพง':435,
                 'ก๋วยเตี๋ยวหลอด':225, 'ก๋วยเตี๋ยวเนื้อเรียง':370, 'ก๋วยเตี๋ยวเรือน้ำตกน้ำ':180, 'ก๋วยเตี๋ยวเรือน้ำตกแห้ง':225, 'ก๋วยเตี๋ยวเส้นปลา น้ำ':375,
@@ -62,10 +58,7 @@ def calculate():
     dessert_name = dessert_var.get()
     beverage_name = beverage_var.get()
     #find sum calories
-    calories = food_dic[food_name.encode('utf8')]+dessert_dic[dessert_name.encode('utf8')]+beverage_dic[beverage_name.encode('utf8')]
-
-
-    
+    calories = food_dic[food_name.encode('utf8')]+dessert_dic[dessert_name.encode('utf8')]+beverage_dic[beverage_name.encode('utf8')]    
     panel3 = Label(rooto, bg="OliveDrab3")
     panel3.pack(side='top', fill='both', expand='yes')
     
@@ -93,19 +86,10 @@ def food():#select food page
     global food_var, dessert_var, beverage_var
     root.destroy()
     rootf = Tk()
-    rootf.geometry("480x480+350+100")
-
-    
+    rootf.geometry("480x480+350+100")  
     rootf.title("Food Selecter")
-
-
     panel1 = Label(rootf, bg="OliveDrab3")
-    panel1.pack(side='top', fill='both', expand='yes')
-
-    
-    
-
-    
+    panel1.pack(side='top', fill='both', expand='yes') 
     label = Label(panel1, text="Food Selecter",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
     label.pack(fill=X)
     label2 = Frame(panel1, bg="chartreuse4")
@@ -193,29 +177,15 @@ def food():#select food page
 
 #-------First Page------#
 root = Tk()
-
-
 root.geometry("480x480+350+100")
-
 panel1 = Label(root,  bg="OliveDrab3")
 panel1.pack(side='top', fill='both', expand='yes')
-
-
 font = tkFont.Font(size="25")
 root.title("Calories Calculator")
-
-
-
 label = Label(panel1, text=" Calories Calculator ",font=("Chelsea ", 35),fg='snow',bg='chartreuse4',compound='center')
 label.pack(side='top', fill='both')
-
-
-
-
-
 frame1 = Frame(root).pack(side = "left")
-button2 = Button(panel1, padx=30, pady=35, bd=5, 
-                     text="คำนวณพลังงานของอาหาร",font=("CSPraJad", 20), fg="black", bg="snow", command=food)
+button2 = Button(panel1, padx=30, pady=35, bd=5,text="คำนวณพลังงานของอาหาร",font=("CSPraJad", 20), fg="black", bg="snow", command=food)
 button2.pack(expand=YES)
 root.mainloop()
 
