@@ -57,24 +57,26 @@ def calculate():
     food_name = food_var.get()
     dessert_name = dessert_var.get()
     beverage_name = beverage_var.get()
+    
     #find sum calories
     calories = food_dic[food_name.encode('utf8')]+dessert_dic[dessert_name.encode('utf8')]+beverage_dic[beverage_name.encode('utf8')]    
     panel3 = Label(rooto, bg="OliveDrab3")
     panel3.pack(side='top', fill='both', expand='yes')
     
-    labelo = Label(panel3, text="How to Burn ?",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
+    labelo = Label(panel3, text="How to Burn ?", font=("Chelsea", 35),bg="chartreuse4",fg="snow")
     labelo.pack(fill=X)
     labelo2 = Frame(panel3, bg="OliveDrab3", pady="50")
 
-    Label(labelo2, text="จำนวนแคลอรี่ทั้งหมด", font=("CSPraJad-bold", 23),bg='chartreuse3', fg="snow").pack(side="top", anchor=W, fill=X, expand=YES, pady="10")
-    Label(labelo2, text=calories, font=("Britannic Bold", 25),bg='OliveDrab3').pack(side="top", pady="20")#show callories in label
-    Label(labelo2, text="การออกกำลังกายที่แนะนำ", font=("CSPraJad-bold", 23),bg='chartreuse3', fg="snow").pack(side="top", fill=X)
-    Label(labelo2, text="วิ่งเร็ว", font=("CSPraJad-bold", 20),bg='OliveDrab3').pack(side="top")
+    #workout and time to workout
+    Label(labelo2, text="จำนวนแคลอรี่ทั้งหมด", font=("CSPraJad-bold", 23), bg='chartreuse3', fg="snow").pack(side="top", anchor=W, fill=X, expand=YES, pady="10")
+    Label(labelo2, text=calories, font=("Britannic Bold", 25), bg='OliveDrab3').pack(side="top", pady="20")#show callories in label
+    Label(labelo2, text="การออกกำลังกายที่แนะนำ", font=("CSPraJad-bold", 23), bg='chartreuse3', fg="snow").pack(side="top", fill=X)
+    Label(labelo2, text="วิ่งเร็ว", font=("CSPraJad-bold", 20), bg='OliveDrab3').pack(side="top")
     Label(labelo2, text=str((calories/15)/60)+" ชั่วโมง "+str((calories/15)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
-    Label(labelo2, text="ว่ายน้ำ", font=("CSPraJad-bold", 20),bg='OliveDrab3').pack(side="top")
+    Label(labelo2, text="ว่ายน้ำ", font=("CSPraJad-bold", 20), bg='OliveDrab3').pack(side="top")
     Label(labelo2, text=str((calories/8)/60)+" ชั่วโมง "+str((calories/8)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
-    Label(labelo2, text="ปั่นจักรยาน", font=("CSPraJad-bold", 20),bg='OliveDrab3').pack(side="top")
-    Label(labelo2, text=str((calories/7)/60)+" ชั่วโมง "+str((calories/7)%60)+" นาที",bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
+    Label(labelo2, text="ปั่นจักรยาน", font=("CSPraJad-bold", 20), bg='OliveDrab3').pack(side="top")
+    Label(labelo2, text=str((calories/7)/60)+" ชั่วโมง "+str((calories/7)%60)+" นาที", bg='OliveDrab3', font=("CSPraJad", 15)).pack(side="top")
     Label(labelo2, text="กรุณาปิดหน้านี้เพื่อคำนวณอีกครั้้ง", bg='OliveDrab3', font=("CSPraJad-bold", 15), fg="snow").pack(side="top")
         
     labelo2.pack(side=TOP, fill=X)
@@ -90,12 +92,12 @@ def food():#select food page
     rootf.title("Food Selecter")
     panel1 = Label(rootf, bg="OliveDrab3")
     panel1.pack(side='top', fill='both', expand='yes') 
-    label = Label(panel1, text="Food Selecter",font=("Chelsea", 35),bg="chartreuse4",fg="snow")
+    label = Label(panel1, text="Food Selecter",font=("Chelsea", 35), bg="chartreuse4", fg="snow")
     label.pack(fill=X)
     label2 = Frame(panel1, bg="chartreuse4")
-    Label(label2, text="อาหารคาว",font=("CSPraJad-bold", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
-    Label(label2, text="ของหวาน",font=("CSPraJad-bold", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
-    Label(label2, text="เครื่องดื่ม",font=("CSPraJad-bold", 20),fg="snow",bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="อาหารคาว", font=("CSPraJad-bold", 20), fg="snow", bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="ของหวาน", font=("CSPraJad-bold", 20), fg="snow", bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
+    Label(label2, text="เครื่องดื่ม", font=("CSPraJad-bold", 20), fg="snow", bg="chartreuse4").pack(side=TOP, anchor=W, fill=X, expand=YES)
     label2.pack(side=LEFT, fill=BOTH, pady=145)
     label3 = Frame(panel1, bg="chartreuse4")
     
@@ -182,10 +184,10 @@ panel1 = Label(root,  bg="OliveDrab3")
 panel1.pack(side='top', fill='both', expand='yes')
 font = tkFont.Font(size="25")
 root.title("Calories Calculator")
-label = Label(panel1, text=" Calories Calculator ",font=("Chelsea ", 35),fg='snow',bg='chartreuse4',compound='center')
+label = Label(panel1, text=" Calories Calculator ", font=("Chelsea ", 35), fg='snow', bg='chartreuse4', compound='center')
 label.pack(side='top', fill='both')
 frame1 = Frame(root).pack(side = "left")
-button2 = Button(panel1, padx=30, pady=35, bd=5,text="คำนวณพลังงานของอาหาร",font=("CSPraJad", 20), fg="black", bg="snow", command=food)
+button2 = Button(panel1, padx=30, pady=35, bd=5, text="คำนวณพลังงานของอาหาร", font=("CSPraJad", 20), fg="black", bg="snow", command=food)
 button2.pack(expand=YES)
 root.mainloop()
 
